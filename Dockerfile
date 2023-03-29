@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy the built Angular application to the default Nginx public folder
-COPY --from=0 /app/dist /usr/share/nginx/html
+COPY --from=0 /app/dist/angular13 /usr/share/nginx/html
 
 # Expose the default Nginx port
 EXPOSE 80
