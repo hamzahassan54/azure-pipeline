@@ -20,7 +20,7 @@ steps:
       echo 'Build.SourceVersion: $(tag)'
       echo 'Build.SourcesDirectory: $(Build.SourcesDirectory)'
       echo 'Build.ArtifactStagingDirectory: $(build.artifactstagingdirectory)'
-      echo 'Tags: $(tags)'
+      echo 'Tags: $(tag_postfix)'
   - task: NodeTool@0
     inputs:
       versionSpec: "16.15.1"
@@ -37,7 +37,7 @@ steps:
       command: "build"
       Dockerfile: "**/Dockerfile"
       tags: |
-        $(branch)_latest
+        $(tag)_latest
     displayName: "Docker image build"
 
   - task: Docker@2
