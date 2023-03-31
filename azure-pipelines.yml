@@ -23,7 +23,8 @@ steps:
       repository: "9876543232/mind-platform"
       command: "build"
       Dockerfile: "**/Dockerfile"
-      arguments: "-t 9876543232/mind-platform:$(imageTag) -f ./Dockerfile"
+      tags: |
+        $(imageTag)
     displayName: "Docker image build"
 
   - task: Docker@2
