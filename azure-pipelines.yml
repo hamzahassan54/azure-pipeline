@@ -20,9 +20,10 @@ steps:
   - task: Docker@2
     inputs:
       containerRegistry: "docker hub services"
-      repository: "9876543232/mind-platform:$(imageTag)"
+      repository: "9876543232/mind-platform"
       command: "build"
       Dockerfile: "**/Dockerfile"
+      arguments: "-t 9876543232/mind-platform:$(imageTag) -f ./Dockerfile"
     displayName: "Docker image build"
 
   - task: Docker@2
