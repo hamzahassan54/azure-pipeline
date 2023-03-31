@@ -5,7 +5,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  imageTag: "latest"
+  imageTag: $'(formatDateTime('yyyy-MM-dd-HHmmss', utcnow()))'
 
 steps:
   - task: NodeTool@0
