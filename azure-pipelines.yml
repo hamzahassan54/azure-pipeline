@@ -12,7 +12,7 @@ variables:
   appName: hauki
   containerRegistry: registry.hub.docker.com
   tag_postfix: "apm"
-  Date&TimeTag: $(date +%Y%m%d-%H%M%S)
+  Date&TimeTag: $[format('{0:%Y%m%d-%H%M%S}', pipeline.startTime)]
 
 steps:
   - script: |
