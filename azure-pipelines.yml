@@ -22,6 +22,7 @@ steps:
       echo 'Build.SourcesDirectory: $(Build.SourcesDirectory)'
       echo 'Build.ArtifactStagingDirectory: $(build.artifactstagingdirectory)'
       echo 'Tags: $(tag_postfix)'
+      echo 'Date and time $(Date&TimeTag)'
   - task: NodeTool@0
     inputs:
       versionSpec: "16.15.1"
