@@ -17,13 +17,6 @@ steps:
       containerRegistry: "docker hub services"
       command: "login"
 
-  - task: PowerShell@2
-    inputs:
-      targetType: "inline"
-      script: |
-        Write-Host "##vso[task.setvariable variable=imageTag]$(Build.BuildNumber)"
-    displayName: "Set image tag variable"
-
   - task: Docker@2
     inputs:
       containerRegistry: "docker hub services"
