@@ -12,7 +12,7 @@ variables:
   appName: hauki
   containerRegistry: registry.hub.docker.com
   tag_postfix: "apm"
-  Date&TimeTag: $[format('{0:%Y%m%d-%H%M%S}', pipeline.startTime)]
+  Date&TimeTag: "31-3-2023"
 
 steps:
   - script: |
@@ -39,7 +39,7 @@ steps:
       command: "build"
       Dockerfile: "**/Dockerfile"
       tags: |
-        $(Date&TimeTag)
+        $(Date&TimeTag)_latest
     displayName: "Docker image build"
 
   - task: Docker@2
@@ -48,7 +48,7 @@ steps:
       repository: "9876543232/mind-platform"
       command: "push"
       tags: |
-        $(Date&TimeTag)
+        $(Date&TimeTag)_latest
     displayName: "Docker image push"
 
   - task: Docker@2
