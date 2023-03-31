@@ -5,10 +5,22 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  tag: "$(Build.BuildId)"
   branch: "$(Build.SourceBranchName)"
+  tag: "$(Build.SourceVersion)"
+  ImageName: "hauki"
+  azureSubscription: HKI-kanslia-standalone
+  appName: hauki
+  containerRegistry: registry.hub.docker.com
+  tag_postfix: "apm"
 
 steps:
+  - script: |
+      echo 'Running in workspace $(Pipeline.Workspace)'
+      echo 'Build.SourceBranchName: $(branch)'
+      echo 'Build.SourceVersion: $(tag)'
+      echo 'Build.SourcesDirectory: $(Build.SourcesDirectory)'
+      echo 'Build.ArtifactStagingDirectory: $(build.artifactstagingdirectory)'
+      echo 'Tags: $(tags)'
   - task: NodeTool@0
     inputs:
       versionSpec: "16.15.1"
@@ -25,7 +37,7 @@ steps:
       command: "build"
       Dockerfile: "**/Dockerfile"
       tags: |
-        $(branch)
+        $(branch)_latest
     displayName: "Docker image build"
 
   - task: Docker@2
