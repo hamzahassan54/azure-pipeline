@@ -12,6 +12,7 @@ variables:
   appName: hauki
   containerRegistry: registry.hub.docker.com
   tag_postfix: "apm"
+  Date&TimeTag: $(date +%Y%m%d-%H%M%S)
 
 steps:
   - script: |
@@ -34,11 +35,21 @@ steps:
     inputs:
       containerRegistry: "docker hub services"
       repository: "9876543232/mind-platform"
-      command: "buildAndPush"
+      command: "build"
       Dockerfile: "**/Dockerfile"
       tags: |
-        $(branch)_latest
+        $(Date&TimeTag)
     displayName: "Docker image build"
+
+  - task: Docker@2
+    inputs:
+      containerRegistry: "docker hub services"
+      repository: "9876543232/mind-platform"
+      command: "push"
+      tags: |
+        $(Date&TimeTag)
+    displayName: "Docker image push"
+
   - task: Docker@2
     inputs:
       containerRegistry: "docker hub services"
