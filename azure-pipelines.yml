@@ -5,7 +5,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  imageTag: $'(formatDateTime('yyyy-MM-dd-HHmmss', utcnow()))'
+  tag: "$(Build.BuildId)"
 
 steps:
   - task: NodeTool@0
@@ -24,7 +24,7 @@ steps:
       command: "build"
       Dockerfile: "**/Dockerfile"
       tags: |
-        $(imageTag)
+        $(tag)
     displayName: "Docker image build"
 
   - task: Docker@2
